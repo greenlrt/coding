@@ -13,7 +13,10 @@ for record in weather['items']:
     temperatures.append(temperature)
 
 ## list comprehension to get all the temperatures in a list
-temperatures = [parser.parse(record['ambient_temp']) for record in weather['items']]
+temperatures = [record['ambient_temp'] for record in weather['items']]
+
+## list comprehension to get all the timestamps in a list
+timestamps = [parser.parse(record['reading_timestamp']) for record in weather['items']]
 
 ## create a plot of timestamps against temperature and show it
 plt.plot(timestamps, temperatures)

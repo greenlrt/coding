@@ -5,7 +5,7 @@ all: $(SRC)
 $(SRC): $(SRC).o
 	gcc -o $@ $+
 
-$(SRC): $(SRC).s
+$(SRC).o: $(SRC).s
 	as -o $@ $<
 
 clean:

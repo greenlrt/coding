@@ -1,8 +1,12 @@
-compile: $(SRC).o
-	gcc $? -o $(SRC)
-
-assemble: $(SRC).s
-	as $? -o $(SRC).o
-
-run:
+# Makefile
+all: $(SRC)
 	./$(SRC) ; echo $$?
+
+$(SRC): $(SRC).o
+	gcc -o $@ $+
+
+$(SRC): $(SRC).s
+	as -o $@ $<
+
+clean:
+	rm -vf $(SRC) $(SRC).o

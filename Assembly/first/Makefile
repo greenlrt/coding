@@ -2,10 +2,10 @@
 all: first
 
 first: first.o
-	gcc -0 $@ $+
+	gcc -o $@ $+
 
 first.o : first.s
-	gcc -0 $@ $<
+	as -o $@ $<
 
 clean:
 	rm -vf first *.o

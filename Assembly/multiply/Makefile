@@ -1,11 +1,11 @@
 #Makefile
 all: multiply
+	./$? ; echo $$?
 
-multiply: $@.o
-	gcc -o $@ $+
-	./$@ ; echo $$?
+multiply: multiply.o
+	gcc -o $@ $?
 
-multiply.o: $@.s
+multiply.o: multiply.s
 	as -o $@ $<
 
 clean:

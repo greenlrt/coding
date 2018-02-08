@@ -1,12 +1,12 @@
 #Makefile
-all: load
+all: loadStore
 	./$? ; echo $$?
 
-load: load.o
+loadStore: loadStore.o
 	gcc -o $@ $?
 
-load.o: load.s
+loadStore.o: loadStore.s
 	as -o $@ $<
 
 clean:
-	rm -vf load load.o
+	rm -vf loadStore loadStore.o

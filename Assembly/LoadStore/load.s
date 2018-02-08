@@ -14,8 +14,8 @@ myvar1:
 .balign 4
 .global main
 main:
-	ldr r1, addr_of_myvar1 /* r1 <-- &myvar1 */
-	ldr r1, [r1]	/* r1 <-- *r1 */
+	ldr r0, addr_of_myvar1 /* r1 <-- &myvar1 */
+	ldr r0, [r0]	/* r1 <-- *r1 */
 	bx lr
 
 /*Labels needed to access data */

@@ -6,7 +6,7 @@
 #include <stdlib.h>
 
 int main(int argc, char *argv[]) {
-	if (argc < 3) {
+	if (argc > 2) {
 		printf("Please enter 2 arguments");
 	}
 
@@ -19,12 +19,9 @@ int main(int argc, char *argv[]) {
 	int count = atoi(argv[1]);
 	pid_t processes[count];
 
-	key = 1234;
+	key = 1005;
 
-	if ((id = shmget(key, sizeof(int), IPC_CREAT | IPC_EXCL)) < 0) {
-		perror("shmget");
-		exit(1);
-	}
+	id = shmget(key, sizeof(int), IPC_CREAT | 0666);
 
 	shm = shmat(id, NULL, 0);
 	*shm = 0;
@@ -48,7 +45,7 @@ int main(int argc, char *argv[]) {
 		waitpid(processes[i], NULL, WNOHANG);
 	}
 
-	printf("%d", *shm);
+	printf("final value: %d", *shm);
 	shmdt(shm);
 	return 0;
 }

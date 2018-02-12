@@ -34,18 +34,18 @@ int main(int argc, char *argv[]) {
 			/* execute client */
 			sprintf(command, "./client %d", id);
 			system(command);
+			return 0;
 		} else {
 			processes[i] = pid;
-			break;
 		}
 		i++;
 	}
 
 	for(i = 0; i < count; i++) {
-		waitpid(processes[i], NULL, WNOHANG);
+		waitpid(processes[i], NULL, 0);
 	}
 
-	printf("final value: %d", *shm);
+	printf("final value: %d\n", *shm);
 	shmdt(shm);
 	return 0;
 }

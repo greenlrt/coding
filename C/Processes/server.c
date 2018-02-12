@@ -1,9 +1,6 @@
 /* Server.c - Starts processes which add to an integer stored in memory */
 
-#include <stdio.h>
-#include <sys/types.h>
-#include <sys/shm.h>
-#include <stdlib.h>
+#include "processes.h"
 
 int main(int argc, char *argv[]) {
 	if (argc > 2) {
@@ -14,7 +11,7 @@ int main(int argc, char *argv[]) {
 	key_t key;
 	int id;
 	char *command;
-	int *shm = 0;
+	struct SharedMemory *shm;
 	int i = 0;
 	int count = atoi(argv[1]);
 	pid_t processes[count];
@@ -24,7 +21,8 @@ int main(int argc, char *argv[]) {
 	id = shmget(key, sizeof(int), IPC_CREAT | 0666);
 
 	shm = shmat(id, NULL, 0);
-	*shm = 0;
+	shm->n = 0;
+	sem_init(&(shm->sem), 1, 1);
 
 	while (i < count) {
 		pid = fork();
@@ -45,7 +43,8 @@ int main(int argc, char *argv[]) {
 		waitpid(processes[i], NULL, 0);
 	}
 
-	printf("final value: %d\n", *shm);
+	printf("final value: %d\n", shm->n);
+	sem_destroy(&(shm->sem));
 	shmdt(shm);
 	return 0;
 }

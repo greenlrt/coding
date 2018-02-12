@@ -3,13 +3,13 @@
 all: server client
 
 server: server.o
-	gcc server.o -o server
+	gcc -pthread server.o -o server
 
-server.o: server.c
-	gcc -c server.c -o server.o
+server.o: server.c processes.h
+	gcc -c -pthread server.c -o server.o
 
 client: client.o
-	gcc client.o -o client
+	gcc -pthread client.o -o client
 
-client.o: client.c
-	gcc -c client.c -o client.o
+client.o: client.c processes.h
+	gcc -c -pthread client.c -o client.o

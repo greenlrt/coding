@@ -19,7 +19,7 @@ int main(int argc, char *argv[]) {
 	int count = atoi(argv[1]);
 	pid_t processes[count];
 
-	key = 1005;
+	key = 3456;
 
 	id = shmget(key, sizeof(int), IPC_CREAT | 0666);
 

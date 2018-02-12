@@ -13,7 +13,7 @@ int main(int argc, char *argv[]) {
 	int id = atoi(argv[1]);
 	int *shm;
 
-	key =1005;
+	key =3456;
 
 	id = shmget(key, sizeof(int), IPC_EXCL);
 	shm = shmat(id, NULL, 0);

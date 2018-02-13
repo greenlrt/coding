@@ -3,8 +3,9 @@
 #include "processes.h"
 
 int main(int argc, char *argv[]) {
-	if (argc > 2) {
-		printf("Please enter 2 arguments");
+	if (argc != 2) {
+		printf("Please enter 1 arguments.\n");
+		return 1;
 	}
 
 	pid_t pid;

@@ -5,6 +5,7 @@
 #include <sys/shm.h>
 #include <stdlib.h>
 #include <semaphore.h>
+#include <unistd.h>
 
 struct SharedMemory {
 	int n;

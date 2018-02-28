@@ -16,10 +16,13 @@ int main(int argc, char *argv[]) {
 	int i = 0;
 	int count = atoi(argv[1]);
 	pid_t processes[count];
+	char *args[2];
+	args[0] = "./client";
 
 	key = 3456;
 
 	id = shmget(key, sizeof(int), IPC_CREAT | 0666);
+	sprintf(args[1], "%d", id);
 
 	shm = shmat(id, NULL, 0);
 	shm->n = 0;
@@ -31,8 +34,9 @@ int main(int argc, char *argv[]) {
 			printf("fork failed");
 		} else if (pid == 0) {
 			/* execute client */
-			sprintf(command, "./client %d", id);
-			system(command);
+			/*sprintf(command, "./client %d", id);
+			system(command);*/
+			execvp("./client", args);
 			return 0;
 		} else {
 			processes[i] = pid;

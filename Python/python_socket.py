@@ -10,8 +10,10 @@ s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 # Specify server and port
 
-server =
+server = "www.google.com"
 port = 80
+
+request = "GET / HTTP/1.1\nHost: "+server+"\n\n"
 
 # Connect socket
 
@@ -19,6 +21,6 @@ s.connect((server,port))
 s.send(request.encode())
 result = s.recv(4096)
 
-while(len(result) > 0:
+while(len(result) > 0):
     print(result)
     result = s.recv(4096)

@@ -10,8 +10,11 @@ s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 # Specify server and port
 
-server = "www.google.com"
+server = "www.pythonprogramming.net"
 port = 80
+
+ip = socket.gethostbyname(server)
+print(ip)
 
 request = "GET / HTTP/1.1\nHost: "+server+"\n\n"
 

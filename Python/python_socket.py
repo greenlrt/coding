@@ -10,7 +10,7 @@ s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 # Specify server and port
 
-server = "www.python.org"
+server = "python.org"
 port = 80
 
 ip = socket.gethostbyname(server)

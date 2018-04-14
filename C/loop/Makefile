@@ -1,15 +1,15 @@
 # Makefile
 
-all: $(SRC)
+all: loop
 
-$(SRC): $(SRC).o
-	gcc -o $@ $+
+loop: loop.o
+	gcc -o $@ $?
 
-$(SRC).o: $(SRC).s
+loop.o: loop.s
 	as -o $@ $<
 
-$(SRC).s: $(SRC).c
+loop.s: loop.c
 	gcc -S $^ -o $@
 
 clean:
-	rm -vf $(SRC) $(SRC).o $(SRC).s
+	rm -vf loop loop.o loop.s

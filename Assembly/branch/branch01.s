@@ -2,8 +2,8 @@
 .text
 .global main
 main:
-	mov r0, #2 /* r0 <-- 2 */
+	mov r0, #1 /* r0 <-- 1 */
 	b end	   /* branch to 'end' */
-	mov r0, #3 /* r0 <-- 3 */
+	mov r0, #0 /* r0 <-- 0 */
 end:
 	bx lr

@@ -8,7 +8,7 @@ let db = new sqlite.Database('../../mydatabase.db', (err) => {
 });
 
 db.serialize(() => {
-	db.each('SELECT * FROM temps', (err, row) => {
+	db.each('SELECT * FROM temps ORDER BY zone', (err, row) => {
 		if (err) {
 			console.err(err.message);
 		}

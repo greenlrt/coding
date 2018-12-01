@@ -14,6 +14,13 @@ db.serialize(() => {
 		}
 		console.log(row);
 	});
+	db.all('SELECT * FROM temps ORDER BY zone', (err, rows) => {
+		if (err) {
+			console.err(err.message);
+		}
+		console.log(rows);
+	});
+		
 });
 
 db.close((err) => {

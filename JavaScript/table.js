@@ -1,0 +1,1 @@
+/* Queries the database for table data */

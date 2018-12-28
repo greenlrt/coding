@@ -2,3 +2,5 @@
 function myFunction() {
 	alert("Hello World!");
 }
+
+document.write("Will use this to test table component");

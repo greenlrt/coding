@@ -3,4 +3,6 @@ function myFunction() {
 	alert("Hello World!");
 }
 
-document.write("Will use this to test table component");
+window.onload = function() {
+document.getElementsByClassName('main')[0].insertAdjacentHTML('beforeend', '<br>Will use this to test table component');
+};

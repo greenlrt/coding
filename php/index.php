@@ -1,3 +1,5 @@
 <?php
-echo "Hello World!";
+echo "Hello World!\n";
+
+include_once "database.php";
 ?>

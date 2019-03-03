@@ -5,4 +5,8 @@ function myFunction() {
 
 window.onload = function() {
 document.getElementsByClassName('main')[0].insertAdjacentHTML('beforeend', '<br>Will use this to test table component');
+
+var script = document.createElement("script");
+script.src = '../JavaScript/xhr.js';
+document.head.appendChild(script);
 };

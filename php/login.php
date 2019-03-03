@@ -13,11 +13,8 @@ require_once "database.php";
 $data = json_decode(file_get_contents("php://input"));
 
 // generate json web token
-include_once 'libs/php-jwt-master/src/BeforeValidException.php';
-include_once 'libs/php-jwt-master/src/ExpiredException.php';
-include_once 'libs/php-jwt-master/sc/SignatureInvalidException.php';
-include_once 'libs/php-jwt-master/src/JWT.php';
-use /Firebase/JWT/JWT;
+require_once('vendor/autoload.php');
+use \Firebase\JWT\JWT;
 
 $sql = "SELECT * FROM users";
 $result = $conn->query($sql);

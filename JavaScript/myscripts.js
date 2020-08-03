@@ -60,10 +60,11 @@ window.onload = function() {
 				'uniform mat4 Pmatrix;'+
 				'uniform mat4 Vmatrix;'+
 				'uniform mat4 Mmatrix;'+
+				'uniform float scale;'+
 				'attribute vec3 color;'+//the color of the point
 				'varying vec3 vColor;'+
 				'void main(void) { '+//pre-built function
-					'gl_Position = Pmatrix*Vmatrix*Mmatrix*vec4(position, 1.);'+
+					'gl_Position = Pmatrix*Vmatrix*Mmatrix*vec4(position*scale, 1.);'+
 					'vColor = color;'+
 				'}';
 			
@@ -90,6 +91,7 @@ window.onload = function() {
 			var _Pmatrix = gl.getUniformLocation(shaderprogram, "Pmatrix");
 			var _Vmatrix = gl.getUniformLocation(shaderprogram, "Vmatrix");
 			var _Mmatrix = gl.getUniformLocation(shaderprogram, "Mmatrix");
+			var _scale = gl.getUniformLocation(shaderprogram, "scale");
 			
 			gl.bindBuffer(gl.ARRAY_BUFFER, vertex_buffer);
 			var _position = gl.getAttribLocation(shaderprogram, "position");
@@ -126,6 +128,8 @@ window.onload = function() {
 			var drag = false;
 			var old_x, old_y;
 			var dX = 0, dY = 0;
+			//var scroll = false;
+			scale = 1.0;
 
 			var mouseDown = function(e) {
 				drag = true;
@@ -148,10 +152,23 @@ window.onload = function() {
 				e.preventDefault();
 			};
 
+			var wheel = function(e) {
+				scroll = true;
+				if (e.deltaY > 0) {
+					if (scale > 1.0) {
+						scale -= 1.0;
+					}
+				} else if (e.deltaY < 0) {
+					scale += 1.0;
+				}
+				e.preventDefault();
+			}
+
 			canvas.addEventListener("mousedown", mouseDown, false);
 			canvas.addEventListener("mouseup", mouseUp, false);
 			canvas.addEventListener("mouseout", mouseUp, false);
 			canvas.addEventListener("mousemove", mouseMove, false);
+			canvas.addEventListener("wheel", wheel, false);
 
 			/*=========================rotation================*/
 
@@ -226,6 +243,8 @@ window.onload = function() {
         			gl.uniformMatrix4fv(_Pmatrix, false, proj_matrix);
 				gl.uniformMatrix4fv(_Vmatrix, false, view_matrix);
 				gl.uniformMatrix4fv(_Mmatrix, false, mo_matrix);
+
+				gl.uniform1f(_scale, scale);
 
 		     		gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, index_buffer);
 				gl.drawElements(gl.TRIANGLES, indices.length, gl.UNSIGNED_SHORT, 0);

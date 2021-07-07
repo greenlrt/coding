@@ -1,0 +1,19 @@
+import commands
+import re
+from requests import get
+import json
+
+result = commands.getstatusoutput('traceroute opensky-network.org')
+#print(result)
+result = re.findall('\((.*?)\)',result[1])
+
+print(result)
+
+url = 'https://api.ipgeolocation.io'
+key = '7034faab7a584471ad8d1a0c1e8c8ee9'
+
+for ip in result:
+	request = url + "/ipgeo?apiKey=" + key + "&ip=" + ip
+	#print(request)
+	geolocation = get(request).json()
+	print(geolocation)

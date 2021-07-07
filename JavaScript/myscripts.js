@@ -9,6 +9,8 @@ window.onload = function() {
 	var script = document.createElement("script");
 	script.src = '../JavaScript/xhr.js';
 	document.head.appendChild(script);
+
+	const xr = navigator.xr; // WEBXR virual/argmented reality API
 	
 			/*============= Creating a canvas ======================*/
 			var canvas = document.getElementById('my_Canvas');

@@ -5,7 +5,7 @@ const connected_users={};
 const hostname = '0.0.0.0';
 const port = 3000;
 
-const server = http.createServer((req, res) => {
+const server = http.createServer(function(req, res) {
 	if (req.url == '/events'){
 		res.writeHead(200, {
 			'Content-Type': 'text/event-stream',
@@ -51,6 +51,6 @@ server.on('connection', function(socket) {
 	});
 });
 
-server.listen(port, hostname, () => {
-	console.log(`Server running at http://${hostname}:${port}/`);
+server.listen(port, hostname, function() {
+	console.log('Server running at http://${hostname}:${port}/');
 });

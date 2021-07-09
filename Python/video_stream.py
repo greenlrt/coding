@@ -3,13 +3,15 @@ import requests
 import subprocess
 
 #url = 'https://videos-3.earthcam.com/fecnetwork/20288.flv/chunklist_w572133256.m3u8'
-url = 'http://s52.ipcamlive.com/streams/34ny8mfzjmlablvi6/stream.m3u8'
+url = 'http://s52.ipcamlive.com/streams/34ea8tvqxf3kngghf/'
 
-r = requests.get(url)
+r = requests.get(url + 'stream.m3u8')
+
+print(r.text)
 
 m3u8_master = m3u8.loads(r.text)
 
-#print(m3u8_master.data)
+print(m3u8_master.data)
 
 #playlist_url = m3u8_master.data['playlists'][0]['uri']
 
@@ -18,16 +20,32 @@ m3u8_master = m3u8.loads(r.text)
 #playlist = m3u8.loads(r.text)
 
 #print('https://videos-3.earthcam.com/fecnetwork/20288.flv/' + m3u8_master.data['segments'][0]['uri'])
-print('http://s52.ipcamlive.com/streams/34ny8mfzjmlablvi6/' + m3u8_master.data['segments'][0]['uri'])
+print(url + m3u8_master.data['segments'][0]['uri'])
+
+length = len(m3u8_master.data['segments'])
+media_sequence = m3u8_master.data['media_sequence']
+
+print(length)
+print(media_sequence)
 
 #r = requests.get('https://videos-3.earthcam.com/fecnetwork/20288.flv/' + m3u8_master.data['segments'][0]['uri'])
-r = requests.get('http://s52.ipcamlive.com/streams/34ny8mfzjmlablvi6/' + m3u8_master.data['segments'][0]['uri'])
+r = requests.get(url + m3u8_master.data['segments'][0]['uri'])
 
-with open("video.ts", 'wb') as f:
+with open("video3.ts", 'wb') as f:
     for segment in m3u8_master.data['segments']:
         #url = 'https://videos-3.earthcam.com/fecnetwork/20288.flv/' + segment['uri']
-        url = 'http://s52.ipcamlive.com/streams/34ny8mfzjmlablvi6/' + segment['uri']
-        r = requests.get(url)
+        r = requests.get(url + segment['uri'])
         f.write(r.content)
 
-subprocess.run(['ffmpeg', '-i', 'video.ts', 'video.mp4'])
+    r = requests.get(url + 'stream.m3u8')
+    print(r.text)
+    m3u8_master = m3u8.loads(r.text)
+    print(m3u8_master.data)
+    if (m3u8_master.data['media_sequence'] - media_sequence < length):
+        #overlap
+        start_index = len(m3u8_master.data['segments']) - (m3u8_master.data['media_sequence'] - media_sequence)
+    for i in range(start_index, len(m3u8_master.data['segments'])):
+        r = requests.get(url + m3u8_master.data['segments'][i]['uri'])
+        f.write(r.content)
+
+#subprocess.run(['ffmpeg', '-i', 'video.ts', 'video.mp4'])

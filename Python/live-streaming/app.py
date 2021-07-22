@@ -9,7 +9,8 @@ from imutils.video import VideoStream
 #import datetime
 import imutils
 
-url = 'http://s52.ipcamlive.com/streams/34qg1rhjs0f7kxe5b/'
+#url = 'http://s52.ipcamlive.com/streams/34qg1rhjs0f7kxe5b/'
+url = 'http://s52.ipcamlive.com/streams/34nzmafhjopiikvh3/'
 
 # Initialize the Flask app
 app = Flask(__name__)

@@ -11,13 +11,18 @@ import imutils
 
 #url = 'http://s52.ipcamlive.com/streams/34qg1rhjs0f7kxe5b/'
 url = 'http://s52.ipcamlive.com/streams/34nzmafhjopiikvh3/'
+#url = 'https://wms-prod-1.wetmet.net/live/174-01-01/'
+#url = 'https://wms-prod-1.wetmet.net/live/174-02-01/'
+
+m3u8_file = 'stream.m3u8'
+#m3u8_file = 'chunks.m3u8'
 
 # Initialize the Flask app
 app = Flask(__name__)
 
 def gen_frames():  
     while True:
-        r = requests.get(url + 'stream.m3u8')
+        r = requests.get(url + m3u8_file)
 
         m3u8_master = m3u8.loads(r.text)
 

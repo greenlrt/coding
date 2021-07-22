@@ -7,11 +7,11 @@ import subprocess
 url = 'http://s52.ipcamlive.com/streams/34nzmafhjopiikvh3/'
 #url = 'https://wms-prod-1.wetmet.net/live/174-01-01/'
 #url = 'https://wms-prod-1.wetmet.net/live/174-02-01/'
-url = 'https://stream-uc2-bravo.dropcam.com/nexus_aac/4ced7f126df14af8b1d53acff1296897/'
+#url = 'https://stream-uc2-bravo.dropcam.com/nexus_aac/4ced7f126df14af8b1d53acff1296897/'
 
 m3u8_file = 'stream.m3u8'
 #m3u8_file = 'chunks.m3u8'
-m3u8_file = 'chunklist_w1045725972.m3u8?public=BkDy9gyEpq'
+#m3u8_file = 'chunklist_w1045725972.m3u8?public=BkDy9gyEpq'
 
 r = requests.get(url + m3u8_file)
 

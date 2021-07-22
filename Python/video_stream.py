@@ -3,7 +3,8 @@ import requests
 import subprocess
 
 #url = 'https://videos-3.earthcam.com/fecnetwork/20288.flv/chunklist_w572133256.m3u8'
-url = 'http://s52.ipcamlive.com/streams/34ea8tvqxf3kngghf/'
+#url = 'http://s52.ipcamlive.com/streams/34dukfvdjab0egcwc/'
+url = 'http://s52.ipcamlive.com/streams/34nzmafhjopiikvh3/'
 #url = 'https://wms-prod-1.wetmet.net/live/174-01-01/'
 #url = 'https://wms-prod-1.wetmet.net/live/174-02-01/'
 
@@ -36,7 +37,7 @@ print(media_sequence)
 #r = requests.get('https://videos-3.earthcam.com/fecnetwork/20288.flv/' + m3u8_master.data['segments'][0]['uri'])
 r = requests.get(url + m3u8_master.data['segments'][0]['uri'])
 
-with open("video4.ts", 'wb') as f:
+with open("video7.ts", 'wb') as f:
     for segment in m3u8_master.data['segments']:
         #url = 'https://videos-3.earthcam.com/fecnetwork/20288.flv/' + segment['uri']
         r = requests.get(url + segment['uri'])

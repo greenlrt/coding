@@ -24,7 +24,7 @@ app = Flask(__name__)
     # grab global references to the video stream, out
 
 def gen_frames():  
-    camera = cv2.VideoCapture('../video.ts')
+    camera = cv2.VideoCapture('../video9.ts')
 
     # grab global refereces to the video stream, output frame, and
     # lock variables

@@ -39,7 +39,7 @@ print(media_sequence)
 #r = requests.get('https://videos-3.earthcam.com/fecnetwork/20288.flv/' + m3u8_master.data['segments'][0]['uri'])
 r = requests.get(url + m3u8_master.data['segments'][0]['uri'])
 
-with open("video8.ts", 'wb') as f:
+with open("video9.ts", 'wb') as f:
     for segment in m3u8_master.data['segments']:
         #url = 'https://videos-3.earthcam.com/fecnetwork/20288.flv/' + segment['uri']
         r = requests.get(url + segment['uri'])

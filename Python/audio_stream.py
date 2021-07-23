@@ -3,7 +3,7 @@ import requests
 #stream_url = 'https://www.liveatc.net/play/asx/ksan2.asx'
 #stream_url = 'https://s1-fmt2.liveatc.net/ksan1_twr?nocache=2021070414143045414'
 stream_url = 'https://s1-fmt2.liveatc.net/khuf_twr'
-stream_url = 'https://s1-fmt2.liveatc.net/klax_twr'
+#stream_url = 'https://s1-fmt2.liveatc.net/klax_twr'
 
 r = requests.get(stream_url, stream=True)
 

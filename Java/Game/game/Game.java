@@ -1,5 +1,7 @@
 //edu4java.com/en/game/game1.html
 
+package game;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;

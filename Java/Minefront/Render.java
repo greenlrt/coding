@@ -24,7 +24,11 @@ public class Render {
 				if (xPix < 0 || xPix >= display.WIDTH) {
 					continue;
 				}
-				pixels[xPix + yPix*width] = render.pixels[x + y * render.width];
+				
+				int alpha = render.pixels[x + y * render.width];
+				if (alpha > 0) {
+					pixels[xPix + yPix * width] = alpha;
+				}
 			}
 		}
 	}

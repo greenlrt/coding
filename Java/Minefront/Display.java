@@ -75,7 +75,7 @@ public class Display extends Canvas implements Runnable {
 		}
 
 		Graphics g = bs.getDrawGraphics();
-		g.drawImage(img, 0, 0, WIDTH * 20, HEIGHT * 20, null);
+		g.drawImage(img, 0, 0, WIDTH, HEIGHT, null);
 		g.dispose();
 		bs.show();
 

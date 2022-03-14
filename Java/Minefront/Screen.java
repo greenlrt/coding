@@ -16,14 +16,14 @@ public class Screen extends Render {
 
 	}
 
-	public void render() {
+	public void render(Game game) {
 		for (int i = 0; i < width * height; i++) {
 			pixels[i] = 0;
 		}
 		
 		for (int i = 0; i < 50; i++) {
-			int anim = (int) (Math.sin((System.currentTimeMillis() + i * 5) % 20000.0 / 20000 * Math.PI * 8) * 200);
-			int anim2 = (int) (Math.cos((System.currentTimeMillis() + i * 5) % 20000.0 / 20000 * Math.PI * 8) * 200);
+			int anim = (int) (Math.sin((game.time  + i * 2) % 1000.0 / 100) * 100);
+			int anim2 = (int) (Math.cos((game.time + i * 2) % 1000.0 / 100) * 100);
 			draw(test, (width - 256) / 2 + anim, (height - 256) / 2 + anim2);
 		}
 	}
